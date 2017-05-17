@@ -43,10 +43,25 @@ columns, so the output looks better.
 
 import random
 import sys
+import random
 
 
 def mimic_dict(filename):
   """Returns mimic dict mapping each word to list of words which follow it."""
+  with open(filename, 'r') as alice_file:
+    small_lst_word = alice_file.read().replace('\n', ' ')
+
+  lista_word = dict(enumerate(small_lst_word.split(' ')))
+  dict_word = {'':['We']}
+
+  for a in lista_word.values():
+    if a not in dict_word.keys():
+      dict_word[a] = [''.join([b for b in random.choice(lista_word)])]
+    else:
+      dict_word[a] += [''.join([b for b in random.choice(lista_word)])]
+
+
+  print(dict_word)
   # +++your code here+++
   return
 
