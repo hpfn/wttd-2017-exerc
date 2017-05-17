@@ -46,6 +46,36 @@ import sys
 # and builds and returns a word/count dict for it.
 # Then print_words() and print_top() can just call the utility function.
 
+def how_to_sort(main_dict, order_by, reverse=False):
+    dict_tuple = tuple(main_dict.items())
+    from operator import itemgetter
+    return sorted(dict_tuple, key=itemgetter(order_by), reverse=reverse)
+
+def prep_to_sort(filename):
+    with open(filename, 'r') as the_file:
+        txt_lst_word = the_file.read().replace('\n', ' ')
+
+    lower_txt_lst_word = txt_lst_word.lower().split(' ')
+    dict_word = dict()
+
+    for a in lower_txt_lst_word:
+        if a not in dict_word.keys():
+            dict_word[a] = 1
+        else:
+            dict_word[a] += 1
+    
+    return dict_word
+
+def print_words(filename):
+    dict_word = prep_to_sort(filename)
+    result = how_to_sort(dict_word, 0)
+    print(result)
+
+def print_top(filename):
+    dict_word = prep_to_sort(filename)
+    result = how_to_sort(dict_word, -1, True)
+    print(result)
+
 ###
 
 # This basic command line argument parsing code is provided and
