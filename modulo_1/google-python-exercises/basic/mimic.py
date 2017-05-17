@@ -43,7 +43,7 @@ columns, so the output looks better.
 
 import random
 import sys
-import random
+import textwrap
 
 
 def mimic_dict(filename):
@@ -61,13 +61,24 @@ def mimic_dict(filename):
       dict_word[a] += [''.join([b for b in random.choice(lista_word)])]
 
 
-  print(dict_word)
+  # print(dict_word)
   # +++your code here+++
-  return
+  return dict_word
 
 
 def print_mimic(mimic_dict, word):
   """Given mimic dict and start word, prints 200 random words."""
+  texto_final = []
+  # range: see the size of the file-to-read
+  # for small.txt 5 is enough
+  for i in range(5):
+      for a in mimic_dict.keys():
+          texto_final.append(random.choice(mimic_dict[a]))
+          texto_final.append(' ')
+  for a in textwrap.wrap(''.join(texto_final), 50):
+      print(a)
+  print()
+  print(len(texto_final))
   return
 
 
