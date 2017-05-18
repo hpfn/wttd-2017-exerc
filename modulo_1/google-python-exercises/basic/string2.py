@@ -49,26 +49,27 @@ def not_bad(s):
 # e.g. 'abcde', the front half is 'abc', the back half 'de'.
 # Given 2 strings, a and b, return a string of the form
 #  a-front + b-front + a-back + b-back
+
+def div_even(x, lst_x):
+    divisor = int(lst_x / 2)
+    return x[:-divisor], x[divisor:]
+
+def div_od(y, lst_y):
+    divisor = int(lst_y / 2)
+    return y[:-divisor], y[divisor+1:]
+
 def front_back(a, b):
     tam_a = len(a)
     tam_b = len(b)
     if tam_a % 2 == 0:
-        divisor = int(tam_a / 2)
-        front_a = a[:-divisor]
-        back_a = a[divisor:]
+        front_a, back_a = div_even(a, tam_a)
     else:
-        divisor = int(tam_a / 2)
-        front_a = a[:-divisor]
-        back_a = a[divisor+1:]
+        front_a, back_a = div_od(a, tam_a)
 
     if tam_b % 2 == 0:
-        divisor = int(tam_b / 2)
-        front_b = b[:-divisor]
-        back_b = b[divisor:]
+        front_b, back_b = div_even(b, tam_b)
     else:
-        divisor = int(tam_b / 2)
-        front_b = b[:-divisor]
-        back_b = b[divisor+1:]
+        front_b, back_b = div_od(b, tam_b)
     # +++your code here+++
     return front_a + front_b + back_a + back_b
 
