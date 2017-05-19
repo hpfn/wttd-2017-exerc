@@ -9,7 +9,8 @@
 import os
 import re
 import sys
-import urllib
+import urllib.request
+from pathlib import Path
 
 """Logpuzzle exercise
 Given an apache logfile, find the puzzle urls and download the images.
@@ -24,6 +25,22 @@ def read_urls(filename):
     extracting the hostname from the filename itself.
     Screens out duplicate urls and returns the urls sorted into
     increasing order."""
+    hostname = filename
+
+    with open(filename, 'r') as logfile:
+        path_to_jpg = logfile.read()
+
+    # /edu/languages/google-python-class/images/puzzle/a-babf.jpg animal
+    # /edu/languages/google-python-class/images/puzzle/p-bjhh-bbdh.jpg place
+    regex = re.compile(r'/edu/languages/google-python-class/images/puzzle/\w-\w{4}-{0,1}\w{0,4}.jpg')
+    url = list(set(re.findall(regex, path_to_jpg)))
+    url.sort()
+    full_url =[]
+    filename = re.sub(r'/.*/', '',filename)
+    for path in url:
+        full_url.append('http://code.google.com' + path)
+
+    return full_url
     # +++your code here+++
 
 
@@ -35,7 +52,23 @@ def download_images(img_urls, dest_dir):
     with an img tag to show each local image file.
     Creates the directory if necessary.
     """
-    # +++your code here+++
+    img_dir = Path(dest_dir)
+    if img_dir.exists():
+        pass
+    else:
+        os.mkdir(dest_dir)
+    x = 0
+    img_file = dest_dir + '/img'
+    for url in img_urls:
+        chck_file = Path(img_file + str(x))
+        if chck_file.is_file():
+            pass
+        else:
+            urllib.request.urlretrieve(url, img_file + str(x))
+        x += 1
+
+    # create a index.html file and put <img src=>
+    # inside the created dir above
 
 
 def main():
