@@ -41,8 +41,31 @@ def extract_names(filename):
     followed by the name-rank strings in alphabetical order.
     ['2006', 'Aaliyah 91', Aaron 57', 'Abagail 895', ' ...]
     """
-    # +++your code here+++
-    return
+    with open(filename, 'r') as babynames:
+        html_file = babynames.read() # .split('\n')
+
+    pop_year = re.search(
+        r".*(Popularity in (\d+)).*",
+        html_file)
+    year_rank_list = pop_year.group(2)
+
+    person_rank_lst = []
+    html_file = html_file.split('\n')
+    for a in html_file:
+        full_name = re.search(
+            r"<tr align=\"right\"><td>(\d+)</td><td>(\w+)</td><td>(\w+)</td>",
+            a)
+        if full_name:
+            rank = full_name.group(1)
+            male_name = full_name.group(2)
+            female_name = full_name.group(3)
+            person_rank_lst.append(male_name + ' ' + rank)
+            person_rank_lst.append(female_name + ' ' + rank)
+
+    person_rank_lst.sort()
+    person_rank_lst.insert(0, year_rank_list)
+
+    return person_rank_lst
 
 
 def main():
@@ -64,6 +87,12 @@ def main():
         # +++your code here+++
         # For each filename, get the names, then either print the text output
         # or write it to a summary file
+        # each year has his own file
+        for file in args:
+            year_name_rank_lst = extract_names(file)
+            year = year_name_rank_lst[0]
+            year_file =open(year, 'w')
+            print('\n'.join(year_name_rank_lst), file=year_file)
 
 
 if __name__ == '__main__':
