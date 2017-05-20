@@ -25,18 +25,23 @@ def read_urls(filename):
     extracting the hostname from the filename itself.
     Screens out duplicate urls and returns the urls sorted into
     increasing order."""
-    hostname = filename
+    # hostname = filename
 
     with open(filename, 'r') as logfile:
         path_to_jpg = logfile.read()
 
-    # /edu/languages/google-python-class/images/puzzle/a-babf.jpg animal
-    # /edu/languages/google-python-class/images/puzzle/p-bjhh-bbdh.jpg place
+    animal = '/edu/languages/google-python-class/images/puzzle/a-babf.jpg'
+    place = '/edu/languages/google-python-class/images/puzzle/p-bjhh-bbdh.jpg'
     regex = re.compile(r'/edu/languages/google-python-class/images/puzzle/\w-\w{4}-{0,1}\w{0,4}.jpg')
     url = list(set(re.findall(regex, path_to_jpg)))
-    url.sort()
+    if len(url[0]) == len(animal):
+        url.sort()
+    else:
+        print("place sort")
+        # from operator import itemgetter
+        url.sort(key=lambda place: place[-8:-4])
     full_url =[]
-    filename = re.sub(r'/.*/', '',filename)
+    # filename = re.sub(r'/.*/', '',filename)
     for path in url:
         full_url.append('http://code.google.com' + path)
 
@@ -47,25 +52,35 @@ def read_urls(filename):
 def download_images(img_urls, dest_dir):
     """Given the urls already in the correct order, downloads
     each image into the given directory.
-    Gives the images local filenames img0, img1, and so on.
+    Gives the images local filenames img0.jpg, img1, and so on.
     Creates an index.html in the directory
     with an img tag to show each local image file.
     Creates the directory if necessary.
     """
+    push_to_html_file = "<html>\n<head>\n</head>\n<body>\n"
     img_dir = Path(dest_dir)
     if img_dir.exists():
         pass
     else:
         os.mkdir(dest_dir)
     x = 0
-    img_file = dest_dir + '/img'
+    img_file_name = 'img'
+    img_file_path = dest_dir + '/' + img_file_name
     for url in img_urls:
-        chck_file = Path(img_file + str(x))
+        chck_file = Path(img_file_path + str(x))
         if chck_file.is_file():
             pass
         else:
-            urllib.request.urlretrieve(url, img_file + str(x))
+            urllib.request.urlretrieve(url, img_file_path + str(x))
+        push_to_html_file += "<img src=\"" + img_file_name + str(x) + "\" />"
         x += 1
+
+    push_to_html_file += "</body>\n</html>"
+
+    index_file_path = dest_dir + '/index.html'
+    with open(index_file_path, 'w') as html_file:
+        html_file.write(push_to_html_file)
+
 
     # create a index.html file and put <img src=>
     # inside the created dir above
