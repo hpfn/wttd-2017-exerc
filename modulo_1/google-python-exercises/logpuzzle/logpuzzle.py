@@ -10,6 +10,7 @@ import os
 import re
 import sys
 import urllib.request
+import urllib.error
 from pathlib import Path
 
 """Logpuzzle exercise
@@ -49,19 +50,24 @@ def download_images(img_urls, dest_dir):
     with an img tag to show each local image file.
     Creates the directory if necessary.
     """
-    push_to_html_file = "<html>\n<head>\n</head>\n<body>\n"
+
     img_dir = Path(dest_dir)
     if img_dir.exists():
         pass
     else:
         os.mkdir(dest_dir)
-    x = 0
-    img_file_name = 'img'
-    img_file_path = dest_dir + '/' + img_file_name
-    for url in img_urls:
-        urllib.request.urlretrieve(url, img_file_path + str(x))
-        push_to_html_file += "<img src=\"" + img_file_name + str(x) + "\" />"
-        x += 1
+
+    push_to_html_file = "<html>\n<head>\n</head>\n<body>\n"
+
+    for index, url in enumerate(img_urls):
+        try:
+            img_file_name = 'img' + str(index)
+            urllib.request.urlretrieve(url, dest_dir + '/' + img_file_name)
+            push_to_html_file += "<img src='" + img_file_name + "' />"
+        except Exception as e:
+            print(e)
+            print("It was not possible to download all images, please try again")
+            sys.exit(1)
 
     push_to_html_file += "</body>\n</html>"
 
