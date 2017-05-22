@@ -71,7 +71,7 @@ def download_images(img_urls, dest_dir):
 
     push_to_html_file += "</body>\n</html>"
 
-    index_file_path = dest_dir + '/index.html'
+    index_file_path = ('%s/index.html' % dest_dir)
     with open(index_file_path, 'w') as html_file:
         html_file.write(push_to_html_file)
 
