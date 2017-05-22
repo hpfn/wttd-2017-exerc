@@ -61,9 +61,9 @@ def download_images(img_urls, dest_dir):
 
     for index, url in enumerate(img_urls):
         try:
-            img_file_name = 'img' + str(index)
-            urllib.request.urlretrieve(url, dest_dir + '/' + img_file_name)
-            push_to_html_file += "<img src='" + img_file_name + "' />"
+            img_file_name = ('img%s' % str(index))
+            urllib.request.urlretrieve(url, ("{}/{}" .format(dest_dir, img_file_name)))
+            push_to_html_file += ('<img src="%s" />' % img_file_name)
         except Exception as e:
             print(e)
             print("It was not possible to download all images, please try again")
