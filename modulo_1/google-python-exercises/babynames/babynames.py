@@ -45,7 +45,7 @@ def extract_names(filename):
         html_file = babynames.read() # .split('\n')
 
     pop_year = re.search(
-        r".*(Popularity in (\d+)).*",
+        r".*(Popularity in (\d{4})).*",
         html_file)
     year_rank_list = pop_year.group(2)
 
@@ -59,8 +59,8 @@ def extract_names(filename):
             rank = full_name.group(1)
             male_name = full_name.group(2)
             female_name = full_name.group(3)
-            person_rank_lst.append(male_name + ' ' + rank)
-            person_rank_lst.append(female_name + ' ' + rank)
+            person_rank_lst.append("%s %s" % (male_name, rank))
+            person_rank_lst.append("%s %s" % (female_name, rank))
 
     person_rank_lst.sort()
     person_rank_lst.insert(0, year_rank_list)
