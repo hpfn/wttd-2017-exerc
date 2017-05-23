@@ -54,10 +54,11 @@ def do_zip_file(file_to_zip, tozip):
 def get_special_paths(this_script, dir_ch):
     if os.path.isdir(dir_ch):
         path_to_files = os.path.abspath(dir_ch)
-        for root, _, special_file in os.walk(dir_ch):
-            for f in special_file:
-                if f not in this_script:
-                    yield os.path.join(path_to_files, f)
+        #for root, _, special_file in os.listdir(dir_ch):
+        for f in os.listdir(dir_ch):
+            #for f in special_file:
+            if f not in this_script:
+                yield os.path.join(path_to_files, f)
 
 
 def main():
