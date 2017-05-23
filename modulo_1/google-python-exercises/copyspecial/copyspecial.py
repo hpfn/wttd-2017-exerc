@@ -44,7 +44,8 @@ def search_file_to_zip(this_script, args, tozip):
 
 def do_zip_file(file_to_zip, tozip):
     #for f in file_to_zip:
-    run_zip = subprocess.Popen(["zip", "-j", tozip,] + file_to_zip, stdout=subprocess.PIPE)
+    zip_cmd = ["zip", "-j", tozip,] + file_to_zip
+    run_zip = subprocess.Popen(zip_cmd, stdout=subprocess.PIPE)
     output = run_zip.communicate()[0]
     print(output.decode())
     #if 'error' in output.decode():
