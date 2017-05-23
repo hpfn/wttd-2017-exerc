@@ -56,23 +56,25 @@ def div_even(x, lst_x):
     divisor = int(lst_x / 2)
     return x[:-divisor], x[divisor:]
 
-def div_od(y, lst_y):
+def div_odd(y, lst_y):
     divisor = int(lst_y / 2)
     return y[:-divisor], y[divisor+1:]
+
+def send_to_odd_or_even(the_str, len_str):
+    if len_str % 2 == 0:
+        front_x, back_x = div_even(the_str, len_str)
+    else:
+        front_x, back_x = div_odd(the_str, len_str)
+
+    return front_x, back_x
 
 def front_back(a, b):
     tam_a = len(a)
     tam_b = len(b)
-    if tam_a % 2 == 0:
-        front_a, back_a = div_even(a, tam_a)
-    else:
-        front_a, back_a = div_od(a, tam_a)
 
-    if tam_b % 2 == 0:
-        front_b, back_b = div_even(b, tam_b)
-    else:
-        front_b, back_b = div_od(b, tam_b)
-    # +++your code here+++
+    front_a, back_a = send_to_odd_or_even(a, tam_a)
+    front_b, back_b = send_to_odd_or_even(b, tam_b)
+
     return front_a + front_b + back_a + back_b
 
 # Simple provided test() function used in main() to print
