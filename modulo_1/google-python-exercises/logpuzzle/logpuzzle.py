@@ -62,7 +62,7 @@ def download_images(img_urls, dest_dir):
     for index, url in enumerate(img_urls):
         try:
             img_file_name = ('img%s' % str(index))
-            urllib.request.urlretrieve(url, ("{}/{}" .format(dest_dir, img_file_name)))
+            urllib.request.urlretrieve(url, ("%s/%s" % (dest_dir, img_file_name)))
             push_to_html_file += ('<img src="%s" />' % img_file_name)
         except Exception as e:
             print(e)
