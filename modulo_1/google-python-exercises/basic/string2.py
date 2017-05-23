@@ -17,6 +17,7 @@
 # If the string length is less than 3, leave it unchanged.
 # Return the resulting string.
 def verbing(s):
+    # endswith() could be used
     if len(s) > 2 and s[-3:] in 'ing':
         s = s + 'ly'
     elif len(s) > 2:
@@ -50,6 +51,7 @@ def not_bad(s):
 # Given 2 strings, a and b, return a string of the form
 #  a-front + b-front + a-back + b-back
 
+# import math (ceil) and lambda could be used
 def div_even(x, lst_x):
     divisor = int(lst_x / 2)
     return x[:-divisor], x[divisor:]
