@@ -8,6 +8,8 @@
 """
 # tip from Henrique Bastos
 from functools import partial
+# import unittest
+
 # lambda argumentos: retorno da expressão
 #def multiple_of_X(base, number):
 #    return number % base == 0
@@ -28,27 +30,38 @@ def robot(number):
     return say
 
 
+
+""""
+def assert_equal(result, expected):
+    from sys import _getframe
+    msg = 'Fail: Line {} got {} expecting {}'
+
+    if not result == expected:
+        current = _getframe()
+        caller = current.f_back
+        line_no = caller.f_lineno
+        print(msg.format(line_no, result, expected))
+
+
 if __name__ == '__main__':
     # Faltou:
     #     - consolidar cada caso de cada vez.
     #     - forma pythônica durante refatorar.
     #     - babysteps.
     # Passos bagunçados.
-    assert robot(1) == '1'
-    assert robot(2) == '2'
-    assert robot(3) == 'fizz'
-    assert robot(5) == 'buzz'
-    assert robot(6) == 'fizz'
-    assert robot(7) == '7'
-    assert robot(9) == 'fizz'
-    assert robot(10) == 'buzz'
-    assert robot(11) == '11'
-    assert robot(12) == 'fizz'
-    assert robot(14) == '14'
-    assert robot(15) == 'fizzbuzz'
-    assert robot(20) == 'buzz'
-    assert robot(21) == 'fizz'
-    assert robot(24) == 'fizz'
-    assert robot(25) == 'buzz'
-    assert robot(34) == '34'
-    assert robot(55) == 'buzz'
+    assert_equal(robot(1), '1')
+    assert_equal(robot(2), '2')
+    assert_equal(robot(7), '7')
+
+    assert_equal(robot(3), 'fizz')
+    assert_equal(robot(6), 'fizz')
+    assert_equal(robot(9), 'fizz')
+
+    assert_equal(robot(5), 'buzz')
+    assert_equal(robot(10), 'buzz')
+    assert_equal(robot(20), 'buzz')
+
+    assert_equal(robot(15), 'fizzbuzz')
+    assert_equal(robot(30), 'fizzbuzz')
+    assert_equal(robot(45), 'fizzbuzz')
+"""
