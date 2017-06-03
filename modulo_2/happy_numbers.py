@@ -50,7 +50,7 @@ def happy(number):
 for x in (2, 3, 4, 5, 6, 8, 9, 11, 12, 14, 15, 16):
     #print(x)
     assert not happy(x) == 1
-assert all((happy(n) for n in (1, 7, 10, 13, 100, 97, 130)))
+assert all(happy(n) for n in (1, 7, 10, 13, 100, 97, 130))
 #for i in (1, 7, 10, 13, 100, 97, 130):
 #    # print(i)
 #    assert happy(i) == 1
