@@ -1,5 +1,7 @@
+# coding=utf-8
 import unittest
-from sleep_in import sleep_in
+from .sleep_in import sleep_in
+
 
 class SleepInTest(unittest.TestCase):
     def test_both_false(self):

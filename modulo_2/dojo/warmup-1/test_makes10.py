@@ -1,5 +1,6 @@
+# coding=utf-8
 import unittest
-from makes10 import makes10
+from .makes10 import makes10
 
 
 class Makes10Test(unittest.TestCase):

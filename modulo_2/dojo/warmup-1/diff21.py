@@ -1,3 +1,4 @@
+# coding=utf-8
 def diff21(number):
     """
     absolute diff between number and 21
@@ -6,6 +7,7 @@ def diff21(number):
     if number > 21:
         return (number - 21) * 2
     return 21 - number
+
 
 assert diff21(19) == 2
 assert diff21(10) == 11

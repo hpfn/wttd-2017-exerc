@@ -1,3 +1,4 @@
+# coding=utf-8
 def sum_double(x, y):
     """
     website solution:
@@ -8,8 +9,6 @@ def sum_double(x, y):
     if x == y:
         return (x * 2) + (y * 2)
     return x + y
-
-
 
 
 assert sum_double(1, 2) == 3
