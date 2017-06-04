@@ -1,6 +1,6 @@
 # coding=utf-8
 import unittest
-from .parrot_trouble import parrot_trouble
+from parrot_trouble import parrot_trouble
 
 
 class ParrotTroubleTest(unittest.TestCase):
