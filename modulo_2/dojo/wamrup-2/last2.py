@@ -1,7 +1,7 @@
 # coding=utf-8
 def last2(str):
-    if len(str) < 4:
-        return 0
+    #if len(str) < 4:
+    #    return 0
 
     sub_str = str[-2:]
 
