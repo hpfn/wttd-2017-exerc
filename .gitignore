@@ -1,4 +1,5 @@
 .idea
 README
-mod-1-28-mapa-da-estrutura-do-eventex.zip
-mod-2-16-visao-alem-do-alcance.xmind_.zip
+*.zip
+*.doc
+__pycache__/
