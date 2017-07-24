@@ -1,9 +1,20 @@
 # coding=utf-8
 def make_bricks(small, big, goal):
 
-    # it is not what CodingBat wants
-    total = small + (big * 5) + 1
-    if goal in (i for i in range(total)):
+    if (big * 5) == goal or small == goal:
         return True
+
+    total = small
+    for i in range(big):
+        total += 5
+        if total == goal:
+            return True
+
+
+    total = big * 5
+    for i in range(small):
+        total += 1
+        if total == goal:
+            return True
 
     return False
