@@ -2,7 +2,7 @@
 from unittest import TestCase
 from make_bricks import make_bricks
 
-
+# repeated tests
 class MakeBricksTest(TestCase):
     def test_make_bricks(self):
         self.assertTrue(make_bricks(3, 1, 8))

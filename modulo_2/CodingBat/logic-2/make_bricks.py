@@ -1,4 +1,5 @@
 # coding=utf-8
+# the author do not want loops
 def make_bricks(small, big, goal):
 
     if (big * 5) == goal or small == goal:
