@@ -7,7 +7,7 @@ def close_far(a, b, c):
     ab_ac_diff_sum = a_b_diff + a_c_diff
     bc_ab_diff_sum = b_c_diff + a_b_diff
     ac_bc_diff_sum = a_c_diff + b_c_diff
-
+    
     return (
         (ab_ac_diff_sum >= 4 or bc_ab_diff_sum >= 4 or ac_bc_diff_sum >= 4)
         and
