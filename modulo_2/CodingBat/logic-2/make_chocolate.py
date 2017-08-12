@@ -27,11 +27,10 @@ def make_chocolate(small, big, goal):
         result = 0
 
     if big < how_many_big_bars:
-        has_big_bars = big * 5
+        bars_missing = goal - (big * 5)
     else:
-        has_big_bars = how_many_big_bars * 5
+        bars_missing = goal - (how_many_big_bars * 5)
 
-    bars_missing = goal - has_big_bars
     check_small_bars = small - bars_missing
     if check_small_bars >= 0:
         result = bars_missing
