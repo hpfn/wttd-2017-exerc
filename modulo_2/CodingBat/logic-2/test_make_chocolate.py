@@ -34,3 +34,7 @@ class MakeChocolateTest(TestCase):
 
     def test_makechocolate_9(self):
         self.assertEqual(make_chocolate(1, 2, 5), 0)
+
+    def test_makechocolate_10(self):
+        self.assertEqual(make_chocolate(1, 2, 10), 0)
+
