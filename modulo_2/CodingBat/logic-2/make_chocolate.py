@@ -20,7 +20,7 @@ def make_chocolate(small, big, goal):
     # return -1
     how_many_big_bars = int(goal / 5)
     num_big_bars = big - how_many_big_bars
-
+    
     result = -1
 
     if goal % 5 == 0 and num_big_bars > 0:
@@ -37,5 +37,17 @@ def make_chocolate(small, big, goal):
 
     return result
 
+    # cuducos tip
+    #if big and goal >= 5:
+    #    big, goal = big -1, goal -5
+    #    return make_chocolate(small, big, goal)
+
+    #if goal <= small:
+    #    return goal
+
+    #return -1
 
 
+
+#if __name__ == '__main__':
+#    print(make_chocolate(1, 2, 10))
