@@ -10,11 +10,10 @@ def tower_builder(n_floors):
         count += 1
 
     tam_str = list_odd[-1]
-    final = list()
-    for i in range(n_floors):
-        space_str = ' ' * i
-        asterisc = '*' * (tam_str - (i*2))
-        final.append(space_str + asterisc + space_str)
+    final = [' ' * i +
+             '*' * (tam_str - (i*2)) +
+             ' ' * i
+             for i in range(n_floors)]
 
     final.reverse()
     return final
